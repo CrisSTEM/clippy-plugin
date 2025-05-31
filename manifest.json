@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "Clippy AI Helper",
+  "version": "2.7",
+  "description": "Clippy gives useless tips with Azure AI.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": ["scripting"],
+  "host_permissions": [
+    "<all_urls>",
+    "https://clippy-ai.yosirespondo.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["clippy_bridge.js"],
+      "css": ["css/clippy.css"],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["agents/**"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
